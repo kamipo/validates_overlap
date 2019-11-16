@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.licenses = ['MIT']
   s.require_paths = ['lib']
   s.summary = 'This gem helps validate records with time overlap.'
-  s.add_dependency 'rails', '>= 3.0.0'
+  s.add_dependency 'rails', '>= 6.0.0'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'factory_girl_rails'
@@ -27,5 +27,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rb-readline'
   s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'rubocop'
-  s.add_development_dependency 'test-unit'
 end

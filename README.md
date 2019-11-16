@@ -4,7 +4,7 @@
 
 This project rocks and uses MIT-LICENSE.
 
-#### This gem is compatible with Rails 3, 4, 5.
+#### This gem is compatible with Rails 6.
 
 #### When this gem should be helpful for you?
 Ideal solution for booking applications where you want to make sure, that one place can be booked only once in specific time period.
@@ -62,7 +62,7 @@ class Position < ActiveRecord::Base
   belongs_to :user
   validates "time_slots.starts_at", "time_slots.ends_at",
     :overlap => {
-      :query_options => {:includes => :time_slot},
+      :query_options => {:joins => :time_slot},
       :scope => { "positions.user_id" => proc{|position| position.user_id} }
     }
 end
