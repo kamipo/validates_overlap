@@ -14,27 +14,8 @@ ActionMailer::Base.default_url_options[:host] = 'test.com'
 
 Rails.backtrace_cleaner.remove_silencers!
 
-def activerecord_below_5_2?
-  ActiveRecord.version.release < Gem::Version.new('5.2.0')
-end
-
-def activerecord_over_5_2?
-  ActiveRecord.version.release > Gem::Version.new('5.2.0')
-end
-
-def migrate
-  migrations_path = File.expand_path('../dummy/db/migrate/', __FILE__)
-  if activerecord_below_5_2?
-    ActiveRecord::Migrator.migrate(migrations_path)
-  elsif activerecord_over_5_2?
-    ActiveRecord::MigrationContext.new(migrations_path, ActiveRecord::SchemaMigration).migrate
-  else
-    ActiveRecord::MigrationContext.new(migrations_path).migrate
-  end
-end
-
 # Run any available migration
-migrate
+ActiveRecord::MigrationContext.new(File.expand_path('../dummy/db/migrate/', __FILE__), ActiveRecord::SchemaMigration).migrate
 
 # Load support files
 FactoryGirl.definition_file_paths << File.join(File.dirname(__FILE__), '/dummy/spec/factories')
